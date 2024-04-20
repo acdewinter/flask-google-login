@@ -43,7 +43,7 @@ python created_db.py
 - In you `Authorized URIs` section add these following two URIs 
    
    - ```
-     http://localhost:300/callback
+     http://localhost:3000/callback
      ```
    - ```
      http://localhost:3000/login/callback
