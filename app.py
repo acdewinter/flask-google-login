@@ -18,7 +18,8 @@ cursor = conn.cursor()
 
 
 
-app = Flask("flask-login-app")
+app = Flask("flask-login-app",static_folder='static',
+            template_folder='templates')
 app.secret_key = os.environ.get("APP_SECRET") # make sure 
 
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1" # to allow Http traffic for local dev
@@ -100,10 +101,9 @@ def logout():
 
 @app.route("/")
 def index():
-    data_points = [5, 10, 15, 20, 10, 8, 25, 30, 5, 12, 22]
-    account_balance = [1000]
     if "google_id" in session:
-        return render_template('main.html', logged_in=True, username=session['name'], email=session['email'],account_balance=account_balance,data_points=data_points)   
+        account_balance = 1000
+        return render_template('index2.html', logged_in=True, username=session['name'], email=session['email'],account_balance=account_balance)   
     # return "Hello World <a href='/login'><button>Login</button></a>"
     else: 
         return render_template('index.html', logged_in=False)   
