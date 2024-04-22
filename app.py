@@ -100,8 +100,10 @@ def logout():
 
 @app.route("/")
 def index():
+    data_points = [5, 10, 15, 20, 10, 8, 25, 30, 5, 12, 22]
+    account_balance = [1000]
     if "google_id" in session:
-        return render_template('index.html', logged_in=True, username=session['name'])   
+        return render_template('main.html', logged_in=True, username=session['name'], email=session['email'],account_balance=account_balance,data_points=data_points)   
     # return "Hello World <a href='/login'><button>Login</button></a>"
     else: 
         return render_template('index.html', logged_in=False)   
@@ -158,7 +160,9 @@ def login_callback():
     else:
         return redirect('/register')
 
-
+@app.route("/chatbot")
+def chatbot():
+    return render_template("chatbot.html")
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=3000, debug=True)
